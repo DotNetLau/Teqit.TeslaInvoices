@@ -59,6 +59,7 @@ public class TeslaInvoiceProcessor(InputOptions _inputOptions, PDFReader _pdfRea
             Console.WriteLine("================================");
             Console.WriteLine($"Total invoices processed: {invoiceResults.Count}");
             Console.WriteLine($"Grand total (incl. BTW): {grandTotal:F2} euro");
+            Console.WriteLine("================================");
 
             if (invoiceResults.Count != 0)
             {
