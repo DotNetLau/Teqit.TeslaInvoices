@@ -8,7 +8,7 @@ public class TeslaInvoiceProcessor(InputOptions _inputOptions, PDFReader _pdfRea
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        Console.WriteLine("Tesla Invoice Reader - .NET 9");
+        Console.WriteLine("Tesla Invoice Reader");
         Console.WriteLine("================================");
 
         var invoiceDirectory = _inputOptions.InputDirectory;
