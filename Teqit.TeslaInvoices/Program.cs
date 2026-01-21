@@ -24,4 +24,4 @@ builder.Services.AddSingleton<InputOptions>(x =>
 builder.Services.AddHostedService<TeslaInvoiceProcessor>();
 
 var app = builder.Build();
-await app.StartAsync();
+await app.RunAsync();
