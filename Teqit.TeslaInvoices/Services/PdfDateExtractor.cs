@@ -6,7 +6,7 @@ internal partial class PdfDateExtractor : IPdfDataExtractor<DateOnly>
 {
     public DateOnly ExtractData(string text)
     {
-        var dateMatch = ExtracDateRegex().Match(text);
+        var dateMatch = ExtractDateRegex().Match(text);
         if (dateMatch.Success && DateOnly.TryParse(dateMatch.Groups[1].Value, out DateOnly parsedDate))
         {
             return parsedDate;
@@ -16,5 +16,5 @@ internal partial class PdfDateExtractor : IPdfDataExtractor<DateOnly>
     }
 
     [GeneratedRegex(@"Factuurdatum\s*:?\s*(\d{4}[\/\-]\d{2}[\/\-]\d{2})", RegexOptions.IgnoreCase)]
-    private static partial Regex ExtracDateRegex();
+    private static partial Regex ExtractDateRegex();
 }

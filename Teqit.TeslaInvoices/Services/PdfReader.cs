@@ -5,18 +5,18 @@ using Teqit.TeslaInvoices.Interfaces;
 using Teqit.TeslaInvoices.Models;
 
 namespace Teqit.TeslaInvoices.Services;
-public class PDFReader (IPdfDataExtractor<string> _pdfInvoiceNumberExtractor, IPdfDataExtractor<DateOnly>_pdfDateExtractor, IPdfDataExtractor<decimal> _pdfTotalAmountExtractor)
+internal class PdfReader (IPdfDataExtractor<string> _pdfInvoiceNumberExtractor, IPdfDataExtractor<DateOnly>_pdfDateExtractor, IPdfDataExtractor<decimal> _pdfTotalAmountExtractor) : IPdfReader
 {
     public InvoiceResult ProcessTeslaInvoice(string pdfPath)
     {
-        using var pdfReader = new PdfReader(pdfPath);
+        using var pdfReader = new iText.Kernel.Pdf.PdfReader(pdfPath);
         using var pdfDocument = new PdfDocument(pdfReader);
 
         var strategy = new SimpleTextExtractionStrategy();
-        string text = "";
+        var text = "";
 
         // Extract text from all pages
-        for (int i = 1; i <= pdfDocument.GetNumberOfPages(); i++)
+        for (var i = 1; i <= pdfDocument.GetNumberOfPages(); i++)
         {
             text += PdfTextExtractor.GetTextFromPage(pdfDocument.GetPage(i), strategy);
         }

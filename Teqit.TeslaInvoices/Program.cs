@@ -13,11 +13,11 @@ builder.Logging.AddConsole();
 builder.Services.AddSingleton<IPdfDataExtractor<string>, PdfInvoiceNumberExtractor>();
 builder.Services.AddSingleton<IPdfDataExtractor<DateOnly>, PdfDateExtractor>();
 builder.Services.AddSingleton<IPdfDataExtractor<decimal>, PdfTotalAmountExtractor>();
-builder.Services.AddSingleton<PDFReader>();
+builder.Services.AddSingleton<IPdfReader, PdfReader>();
 
 builder.Services.AddSingleton<InputOptions>(x =>
 {
-    var inputDirectory = args.Length> 0 ? args[0] : "C:\\temp\\MAY_2025-JUN_2025"; ;
+    var inputDirectory = args.Length > 0 ? args[0] : @"G:\\Other computers\\Current\\Google Drive\\Loyal Interim\\Tesla facturen\\2025\\12"; ;
     return new InputOptions(inputDirectory);
 });
 

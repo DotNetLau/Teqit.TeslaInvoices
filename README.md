@@ -1,10 +1,12 @@
-# Teqit.TeslaInvoices
+# Teqit.TeslaInvoices – Tesla PDF invoice parser for .NET
 
-A console tool to view the summary of a collection of Tesla invoices.
+A console tool to view the total amount of a collection of Tesla invoices.
+
+Dutch and German Tesla invoices have been used to develop and test this tool.
 
 ## Instructions
 
-Pass the directory directory to the application through a command-line tool.
+Pass the directory to the application through a command-line tool.
 
 Navigate to executable directory:
 
@@ -17,3 +19,7 @@ Run the tool by passing the directory in which the invoices are located (not the
 ```powershell
 .\Teqit.TeslaInvoices.exe "C:\temp\MAY_2025-JUN_2025"
 ```
+
+## Example output
+
+![Tesla invoice processing result](docs/images/invoice-processing-result.png)

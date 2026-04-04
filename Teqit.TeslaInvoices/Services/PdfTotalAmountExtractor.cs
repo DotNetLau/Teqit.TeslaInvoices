@@ -7,15 +7,12 @@ internal partial class PdfTotalAmountExtractor : IPdfDataExtractor<decimal>
     public decimal ExtractData(string text)
     {
         var match = ExtractTotalAmountRegex().Match(text);
-        if (match.Success)
+        if (match.Success && decimal.TryParse(match.Groups[1].Value, out var amount))
         {
-            if (decimal.TryParse(match.Groups[1].Value, out decimal amount))
-            {
-                return amount;
-            }
+            return amount;
         }
 
-        return -50000000m;
+        return -decimal.MaxValue;
     }
 
     [GeneratedRegex(@"Totaalbedrag\s*\(EUR\)\s*([\d,]+\.?\d{0,2})", RegexOptions.IgnoreCase)]
