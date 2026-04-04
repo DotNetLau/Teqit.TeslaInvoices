@@ -10,19 +10,20 @@ var builder = Host.CreateApplicationBuilder();
 
 builder.Logging.AddConsole();
 
-builder.Services.AddSingleton<IPdfDataExtractor<string>, PdfInvoiceNumberExtractor>();
-builder.Services.AddSingleton<IPdfDataExtractor<DateOnly>, PdfDateExtractor>();
-builder.Services.AddSingleton<IPdfDataExtractor<decimal>, PdfTotalAmountExtractor>();
-builder.Services.AddSingleton<IPdfReader, PdfReader>();
-
 builder.Services
     .AddOptions<InputOptions>()
-    .PostConfigure(x => {
-        x.InputDirectory = args.Length > 0 ? args[0] : @"C:\Tesla invoices\2025\12"; ;
-    })  
+    .PostConfigure(x =>
+    {
+        x.InputDirectory = args.Length > 0 ? args[0] : @"C:\temp\Tesla invoices\2025\12";
+    })
     .ValidateOnStart();
 
-builder.Services.AddHostedService<TeslaInvoiceProcessor>();
+builder.Services
+    .AddSingleton<IPdfDataExtractor<string>, PdfInvoiceNumberExtractor>()
+    .AddSingleton<IPdfDataExtractor<DateOnly>, PdfDateExtractor>()
+    .AddSingleton<IPdfDataExtractor<decimal>, PdfTotalAmountExtractor>()
+    .AddSingleton<IPdfReader, PdfReader>()
+    .AddHostedService<TeslaInvoiceProcessor>();
 
 var app = builder.Build();
 await app.RunAsync();
