@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace Teqit.TeslaInvoices.Options;
-internal class InputOptions (string _inputDirectory)
+internal class InputOptions
 {
-    [Required]
-    public string InputDirectory => _inputDirectory;
+    [Required] 
+    public required string InputDirectory { get; set; }
 }

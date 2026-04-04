@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Teqit.TeslaInvoices.Interfaces;
 using Teqit.TeslaInvoices.Options;
 
 namespace Teqit.TeslaInvoices.HostedServices;
-internal class TeslaInvoiceProcessor(InputOptions _inputOptions, IPdfReader _pdfReader) : BackgroundService
+internal class TeslaInvoiceProcessor(IOptions<InputOptions> _inputOptions, IPdfReader _pdfReader) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -13,7 +14,7 @@ internal class TeslaInvoiceProcessor(InputOptions _inputOptions, IPdfReader _pdf
 
         var sw = Stopwatch.StartNew();
         
-        var invoiceDirectory = _inputOptions.InputDirectory;
+        var invoiceDirectory = _inputOptions.Value.InputDirectory;
         var pdfFiles = Directory.GetFiles(invoiceDirectory, "*.pdf", SearchOption.AllDirectories);
 
         if (pdfFiles.Length == 0)

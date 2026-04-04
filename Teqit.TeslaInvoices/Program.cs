@@ -15,11 +15,12 @@ builder.Services.AddSingleton<IPdfDataExtractor<DateOnly>, PdfDateExtractor>();
 builder.Services.AddSingleton<IPdfDataExtractor<decimal>, PdfTotalAmountExtractor>();
 builder.Services.AddSingleton<IPdfReader, PdfReader>();
 
-builder.Services.AddSingleton<InputOptions>(x =>
-{
-    var inputDirectory = args.Length > 0 ? args[0] : @"G:\\Other computers\\Current\\Google Drive\\Loyal Interim\\Tesla facturen\\2025\\12"; ;
-    return new InputOptions(inputDirectory);
-});
+builder.Services
+    .AddOptions<InputOptions>()
+    .PostConfigure(x => {
+        x.InputDirectory = args.Length > 0 ? args[0] : @"G:\\Other computers\\Current\\Google Drive\\Loyal Interim\\Tesla facturen\\2025\\12"; ;
+    })  
+    .ValidateOnStart();
 
 builder.Services.AddHostedService<TeslaInvoiceProcessor>();
 
