@@ -18,7 +18,7 @@ builder.Services.AddSingleton<IPdfReader, PdfReader>();
 builder.Services
     .AddOptions<InputOptions>()
     .PostConfigure(x => {
-        x.InputDirectory = args.Length > 0 ? args[0] : @"G:\\Other computers\\Current\\Google Drive\\Loyal Interim\\Tesla facturen\\2025\\12"; ;
+        x.InputDirectory = args.Length > 0 ? args[0] : @"C:\Tesla invoices\2025\12"; ;
     })  
     .ValidateOnStart();
 
