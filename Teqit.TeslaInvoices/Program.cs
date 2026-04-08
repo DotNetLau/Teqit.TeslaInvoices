@@ -23,6 +23,7 @@ builder.Services
     .AddSingleton<IPdfDataExtractor<DateOnly>, PdfDateExtractor>()
     .AddSingleton<IPdfDataExtractor<decimal>, PdfTotalAmountExtractor>()
     .AddSingleton<IPdfReader, PdfReader>()
+    .AddSingleton<IPdfArchiver, PdfArchiver>()
     .AddHostedService<TeslaInvoiceProcessor>();
 
 var app = builder.Build();

@@ -1,11 +1,12 @@
 ﻿using System.Diagnostics;
+using System.IO.Compression;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Teqit.TeslaInvoices.Interfaces;
 using Teqit.TeslaInvoices.Options;
 
 namespace Teqit.TeslaInvoices.HostedServices;
-internal class TeslaInvoiceProcessor(IOptions<InputOptions> _inputOptions, IPdfReader _pdfReader) : BackgroundService
+internal class TeslaInvoiceProcessor(IOptions<InputOptions> _inputOptions, IPdfReader _pdfReader, IPdfArchiver _pdfArchiver) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -15,8 +16,10 @@ internal class TeslaInvoiceProcessor(IOptions<InputOptions> _inputOptions, IPdfR
         var sw = Stopwatch.StartNew();
         
         var invoiceDirectory = _inputOptions.Value.InputDirectory;
-        var pdfFiles = Directory.GetFiles(invoiceDirectory, "*.pdf", SearchOption.AllDirectories);
 
+        await _pdfArchiver.UnZip(invoiceDirectory, stoppingToken);
+        
+        var pdfFiles = Directory.GetFiles(invoiceDirectory, "*.pdf", SearchOption.AllDirectories);
         if (pdfFiles.Length == 0)
         {
             Console.WriteLine($"No PDF files found in directory: {invoiceDirectory}");
