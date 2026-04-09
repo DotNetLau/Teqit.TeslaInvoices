@@ -1,23 +1,32 @@
 # Teqit.TeslaInvoices – Tesla PDF invoice parser for .NET
 
-A console tool to view the total amount of a collection of Tesla invoices.
+[![.NET](https://img.shields.io/badge/.NET-10.0-blue.svg)](https://dotnet.microsoft.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Dutch and German Tesla invoices have been used to develop and test this tool.
+A fast console tool that extracts **total amounts** (incl. VAT) from batches of Tesla PDF invoices (Dutch & German formats tested).
 
-## Instructions
+## Features
 
-Pass the directory to the application through a command-line tool.
+- Processes hundreds of invoices in seconds (parallel processing)
+- Supports unpacked Tesla invoice ZIPs
+- Clean summary with grand total + average
+- Cross-platform (.NET 10)
+- MIT Licensed
 
-Navigate to executable directory:
+## Usage
 
-```powershell
-cd "C:\Users\laure\source\repos\GitHub\Teqit.TeslaInvoices\Teqit.TeslaInvoices\bin\Release\net10.0"
-```
+Run the tool by passing the directory in which the invoices are located (default downloaded Tesla .ZIP file or unpacked .PDF files):
 
-Run the tool by passing the directory in which the invoices are located (not the .ZIP file, but an unpacked .ZIP):
+### Windows
 
 ```powershell
 .\Teqit.TeslaInvoices.exe "C:\temp\MAY_2025-JUN_2025"
+```
+
+### Linux
+
+```bash
+./Teqit.TeslaInvoices "/home/user/invoices/MAY_2025-JUN_2025.ZIP"
 ```
 
 ## Example output

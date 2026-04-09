@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.IO.Compression;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Teqit.TeslaInvoices.Interfaces;
