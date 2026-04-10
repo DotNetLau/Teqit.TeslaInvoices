@@ -20,6 +20,9 @@ Run the tool by passing the directory in which the invoices are located (default
 ### Windows
 
 ```powershell
+.\Teqit.TeslaInvoices.exe "C:\temp\MAY_2025-JUN_2025.ZIP"
+```
+```powershell
 .\Teqit.TeslaInvoices.exe "C:\temp\MAY_2025-JUN_2025"
 ```
 
@@ -27,6 +30,9 @@ Run the tool by passing the directory in which the invoices are located (default
 
 ```bash
 ./Teqit.TeslaInvoices "/home/user/invoices/MAY_2025-JUN_2025.ZIP"
+```
+```bash
+./Teqit.TeslaInvoices "/home/user/invoices/MAY_2025-JUN_2025"
 ```
 
 ## Example output
