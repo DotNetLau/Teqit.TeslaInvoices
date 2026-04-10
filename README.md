@@ -38,3 +38,7 @@ Run the tool by passing the directory in which the invoices are located (default
 ## Example output
 
 ![Tesla invoice processing result](docs/images/invoice-processing-result.png)
+
+## Thanks
+
+Made with ❤️ for the Tesla + .NET community.
